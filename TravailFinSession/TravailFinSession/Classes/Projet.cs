@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravailFinSession
+namespace TravailFinSession.Classes
 {
-    internal class Client
+    internal class Projet
     {
     }
 }

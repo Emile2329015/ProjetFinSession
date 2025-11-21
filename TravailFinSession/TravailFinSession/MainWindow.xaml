@@ -15,5 +15,11 @@
 
     <Grid>
 
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="24"
+            FontWeight="Bold"
+            Text="Bienvenue dans mon application" />
     </Grid>
 </Window>

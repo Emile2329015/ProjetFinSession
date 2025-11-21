@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravailFinSession
+namespace TravailFinSession.Slingletons
 {
-    internal class Employe
+    internal class SingletonProjet
     {
     }
 }
