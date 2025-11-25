@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
 
-        <TextBlock x:Name="tblAjoutEmploye" Text="AJOUTER UN CLIENT" Grid.Row="0"
+        <TextBlock x:Name="tblAjoutClient" Text="AJOUTER UN CLIENT" Grid.Row="0"
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
                    FontSize="30"/>

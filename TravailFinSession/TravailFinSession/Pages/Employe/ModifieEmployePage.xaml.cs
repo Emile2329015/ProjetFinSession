@@ -27,5 +27,10 @@ namespace TravailFinSession.Pages.Employe
         {
             InitializeComponent();
         }
+
+        private void Modifier_Employe(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

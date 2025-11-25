@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="AJOUTER UN PROJET" Grid.Row="0"
+        <TextBlock x:Name="tblAjouterProjet" Text="AJOUTER UN PROJET" Grid.Row="0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30"
@@ -74,8 +74,8 @@
                 <TextBlock x:Name="tblerreurProjetClientId" Foreground="Red" Grid.Row="9" Grid.Column="1"/>
 
                 <ComboBox x:Name="CbxProjetStatut" Header="Statut" Grid.Row="10" Grid.Column="0" SelectedIndex="0">
-                    <ComboBoxItem Content="En cours"/>
-                    <ComboBoxItem Content="Terminé"/>
+                    <x:String>En cours</x:String>
+                    <x:String>Terminé</x:String>
                 </ComboBox>
                 <TextBlock x:Name="tblerreurProjetStatut" Foreground="Red" Grid.Row="11" Grid.Column="0"/>
 

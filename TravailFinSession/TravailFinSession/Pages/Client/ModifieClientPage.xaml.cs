@@ -27,5 +27,10 @@ namespace TravailFinSession.Pages.Client
         {
             InitializeComponent();
         }
+
+        private void Modifier_Client(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

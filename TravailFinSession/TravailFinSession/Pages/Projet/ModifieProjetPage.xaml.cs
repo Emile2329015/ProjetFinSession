@@ -27,5 +27,10 @@ namespace TravailFinSession.Pages.Projet
         {
             InitializeComponent();
         }
+
+        private void Modifier_Projet(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
