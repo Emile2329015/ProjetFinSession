@@ -32,5 +32,10 @@ namespace TravailFinSession.Pages.Client
         {
 
         }
+
+        private void BtnGenererId_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

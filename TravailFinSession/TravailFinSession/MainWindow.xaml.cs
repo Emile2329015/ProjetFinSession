@@ -30,6 +30,8 @@ namespace TravailFinSession
         public MainWindow()
         {
             InitializeComponent();
+            this.ExtendsContentIntoTitleBar = true; // Extend the content into the title bar and hide the default titlebar
+            this.SetTitleBar(titleBar); // Set the custom title bar
             mainFrame.Navigate(typeof(ListeProjetPage));
         }
 

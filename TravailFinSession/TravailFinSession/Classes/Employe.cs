@@ -35,6 +35,7 @@ namespace TravailFinSession.Classes
 
         public string Matricule { get => matricule; set => matricule = value; }
         public string Nom { get => nom; set => nom = value; }
+        public string NomComplet { get => $"{prenom} {nom}"; }
         public string Prenom { get => prenom; set => prenom = value; }
         public DateTime DateNaissance { get => dateNaissance; set => dateNaissance = value; }
         public string Email { get => email; set => email = value; }

@@ -92,6 +92,7 @@ namespace TravailFinSession.Pages.Projet
                 tblerreurProjetClientId.Text = "Vous devez entrer l'ID du client pour le projet";
                 valide = false;
             }
+          //  else if()
 
             if (CbxProjetStatut.SelectedItem == null)
             {

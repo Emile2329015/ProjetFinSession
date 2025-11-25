@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <TitleBar 
-            Grid.Row="1"
+            Grid.Row="1" x:Name="titleBar"
             Title="GESTION DE PROJETS"
             Subtitle="Projet de fin de session"
             IsBackButtonVisible="False"
@@ -30,12 +30,24 @@
                 <ImageIconSource ImageSource="/Assets/logoProjet.png"/>
             </TitleBar.IconSource>
             <TitleBar.Content>
-                <AutoSuggestBox
-            Width="500"
-            VerticalAlignment="Center"
-            PlaceholderText="rechercher des projets, employés, clients..."
-            QueryIcon="Find" />
+                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                    <MenuBar>
+                        <MenuBarItem Title="MENU" Grid.Row="1">
+                            <MenuFlyoutItem Text="Exporter les projets" Tag="exporter" Click="MenuFlyoutItem_Click" />
+                        </MenuBarItem>
+
+                    </MenuBar>
+                    
+                    <AutoSuggestBox
+                    Width="500"
+                    VerticalAlignment="Center"
+                    PlaceholderText="rechercher des projets, employés, clients..."
+                    QueryIcon="Find" />
+
+                    
+                </StackPanel>
             </TitleBar.Content>
+
             <TitleBar.RightHeader>
                 <PersonPicture
             Width="30"

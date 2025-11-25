@@ -20,7 +20,8 @@
         <TextBlock x:Name="tblModifierClient" Text="MODIFIER UN CLIENT" Grid.Row="0"
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center" 
-                   FontSize="30"/>
+                   FontSize="30"
+                   FontWeight="Bold"/>
 
 
         <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
@@ -44,7 +45,7 @@
 
                 <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="8">
                     <TextBox x:Name="TbxClientId" Header="Identifiant (100–999)" Width="160" IsReadOnly="True" />
-                    <Button x:Name="BtnGenererId" Content="Générer ID" Click="GenererId_Click"/>
+                    <Button x:Name="BtnGenererId" Content="Générer ID" Click="BtnGenererId_Click"/>
                 </StackPanel>
                 <TextBlock x:Name="tblerreurClientId" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
 

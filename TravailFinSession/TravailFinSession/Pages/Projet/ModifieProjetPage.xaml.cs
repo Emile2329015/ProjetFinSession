@@ -32,5 +32,10 @@ namespace TravailFinSession.Pages.Projet
         {
 
         }
+
+        private void BtnGenererNumero_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
