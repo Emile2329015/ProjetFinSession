@@ -8,7 +8,87 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="LightCoral">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="AJOUTER UN PROJET" Grid.Row="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="30"
+                   FontWeight="Bold"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+            <Grid Margin="20" Background="MistyRose" Padding="20" ColumnSpacing="40" RowSpacing="15">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                    <TextBox x:Name="TbxProjetNumero" Header="Numéro projet (ex: 255-10-2023)" Width="200" IsReadOnly="True"/>
+                    <Button x:Name="BtnGenererNumero" Content="Générer Numéro" Click="BtnGenererNumero_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="tblerreurProjetNumero" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
+
+                <TextBox x:Name="TbxProjetTitre" Header="Titre du projet" Grid.Row="2" Grid.Column="0"/>
+                <TextBlock x:Name="tblerreurProjetTitre" Foreground="Red" Grid.Row="3" Grid.Column="0"/>
+
+                <DatePicker x:Name="DpProjetDebut" Header="Date de début" Grid.Row="2" Grid.Column="1"/>
+                <TextBlock x:Name="tblerreurProjetDateDebut" Foreground="Red" Grid.Row="3" Grid.Column="1"/>
+
+                <TextBox x:Name="TbxProjetDescription" Header="Description" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                         AcceptsReturn="True" TextWrapping="Wrap" Height="100"/>
+                <TextBlock x:Name="tblerreurProjetDescription" Foreground="Red" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+                <TextBox x:Name="TbxProjetBudget" Header="Budget" Grid.Row="6" Grid.Column="0"/>
+                <TextBlock x:Name="tblerreurProjetBudget" Foreground="Red" Grid.Row="7" Grid.Column="0"/>
+
+                <TextBox x:Name="TbxProjetNbEmployes" Header="Nombre d'employés requis (max 5)" Grid.Row="6" Grid.Column="1"/>
+                <TextBlock x:Name="tblerreurProjetNbEmployes" Foreground="Red" Grid.Row="7" Grid.Column="1"/>
+
+                <TextBox x:Name="TbxProjetTotalSalaires" Header="Total des salaires à payer" Grid.Row="8" Grid.Column="0"/>
+                <TextBlock x:Name="tblerreurProjetTotalSalaires" Foreground="Red" Grid.Row="9" Grid.Column="0"/>
+
+                <TextBox x:Name="TbxProjetClientId" Header="Identifiant du client" Grid.Row="8" Grid.Column="1"/>
+                <TextBlock x:Name="tblerreurProjetClientId" Foreground="Red" Grid.Row="9" Grid.Column="1"/>
+
+                <ComboBox x:Name="CbxProjetStatut" Header="Statut" Grid.Row="10" Grid.Column="0" SelectedIndex="0">
+                    <ComboBoxItem Content="En cours"/>
+                    <ComboBoxItem Content="Terminé"/>
+                </ComboBox>
+                <TextBlock x:Name="tblerreurProjetStatut" Foreground="Red" Grid.Row="11" Grid.Column="0"/>
+
+                <Button Grid.Row="12" Grid.ColumnSpan="2" Click="Ajouter_Projet"
+                        Background="Maroon"
+                        Foreground="White"
+                        Padding="10"
+                        HorizontalAlignment="Center"
+                        Margin="10">
+                    Ajouter le projet
+                </Button>
+
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

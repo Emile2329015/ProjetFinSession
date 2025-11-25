@@ -8,5 +8,6 @@ namespace TravailFinSession.Slingletons
 {
     internal class SingletonEmploye
     {
+
     }
 }

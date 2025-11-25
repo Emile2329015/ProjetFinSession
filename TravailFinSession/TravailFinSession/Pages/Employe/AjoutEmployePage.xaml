@@ -8,7 +8,88 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid Background="AliceBlue">
 
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock x:Name="tblAjoutEmploye" Text="AJOUTER UN EMPLOYE" Grid.Row="0"
+       HorizontalAlignment="Center" 
+       VerticalAlignment="Center" 
+       FontSize="30"/>
+
+
+        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+
+            <Grid Margin="20"   Background="LightBlue" Padding="20"  ColumnSpacing="40" RowSpacing="15">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="TbxMatricule" Header="Matricule :" Grid.Row="0" Grid.Column="0" Margin="2"/>
+                <TextBlock x:Name="tblerreurMatricule" Foreground="Red" Grid.Row="1" Grid.Column="0" Margin="2"/>
+
+                <TextBox x:Name="TbxNom" Header="Nom :" Grid.Row="2" Grid.Column="0" Margin="2"/>
+                <TextBlock x:Name="tblerreurNom" Foreground="Red" Grid.Row="3" Grid.Column="0" Margin="2"/>
+
+                <TextBox x:Name="TbxPrenom" Header="Prénom :" Grid.Row="4" Grid.Column="0" Margin="2"/>
+                <TextBlock x:Name="tblerreurPrenom" Foreground="Red" Grid.Row="5" Grid.Column="0" Margin="2"/>
+
+                <TextBox x:Name="TbxDateNaissance" Header="Date de naissance :" Grid.Row="6" Grid.Column="0" Margin="2"/>
+                <TextBlock x:Name="tblerreurDateNaissance" Foreground="Red" Grid.Row="7" Grid.Column="0" Margin="2"/>
+
+                <TextBox x:Name="TbxEmail" Header="Email :" Grid.Row="8" Grid.Column="0" Margin="2"/>
+                <TextBlock x:Name="tblerreurEmail" Foreground="Red" Grid.Row="9" Grid.Column="0" Margin="2"/>
+
+                <TextBox x:Name="TbxAdresse" Header="Adresse :" Grid.Row="0" Grid.Column="1" Margin="2"/>
+                <TextBlock x:Name="tblerreurAdresse" Foreground="Red" Grid.Row="1" Grid.Column="1" Margin="2"/>
+
+                <TextBox x:Name="TbxDateEmbauche" Header="Date d'embauche :" Grid.Row="2" Grid.Column="1" Margin="2"/>
+                <TextBlock x:Name="tblerreurDateEmbauche" Foreground="Red" Grid.Row="3" Grid.Column="1" Margin="2"/>
+
+                <TextBox x:Name="TbxTauxHoraire" Header="Taux horaire :" Grid.Row="4" Grid.Column="1" Margin="2"/>
+                <TextBlock x:Name="tblerreurTauxHoraire" Foreground="Red" Grid.Row="5" Grid.Column="1" Margin="2"/>
+
+                <TextBox x:Name="TbxUrl" Header="Photo d'identité (URL) :" Grid.Row="6" Grid.Column="1" Margin="2"/>
+                <TextBlock x:Name="tblerreurUrl" Foreground="Red" Grid.Row="7" Grid.Column="1" Margin="2"/>
+
+                <ComboBox x:Name="cmbxStatut" Header="Statut :" Grid.Row="8" Grid.Column="1" Margin="2">
+                    <x:String>Journalier</x:String>
+                    <x:String>Permanent</x:String>
+                </ComboBox>
+                <TextBlock x:Name="tblerreurStatut" Foreground="Red" Grid.Row="9" Grid.Column="1" Margin="2"/>
+
+
+
+                <Button Grid.Row="10" Grid.ColumnSpan="2" Click="Ajouter_Employe" Background="CornflowerBlue"
+                        Foreground="White"
+                        Padding="10"
+                        HorizontalAlignment="Center"
+                        Margin="10">Ajouter l'employé
+                </Button>
+
+            </Grid>
+        </ScrollViewer>
+       
     </Grid>
 </Page>
