@@ -41,20 +41,20 @@ namespace TravailFinSession
             {
                 switch (item.Tag)
                 {
-                    case "listeProjet":
+                    case "listeProjets":
                         mainFrame.Navigate(typeof(ListeProjetPage));
                         break;
                     case "addProjet":
                         mainFrame.Navigate(typeof(AjoutProjetPage));
                         break;
 
-                    case "listeEmploye":
+                    case "listeEmployes":
                         mainFrame.Navigate(typeof(ListeEmployePage));
                         break;
                     case "addEmploye":
                         mainFrame.Navigate(typeof(AjoutEmployePage));
                         break;
-                    case "listeClient":
+                    case "listeClients":
                         mainFrame.Navigate(typeof(ListeClientPage));
                         break;
                     case "addClient":

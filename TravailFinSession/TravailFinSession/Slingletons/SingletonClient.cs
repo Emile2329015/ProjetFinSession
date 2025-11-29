@@ -52,7 +52,7 @@ namespace TravailFinSession.Slingletons
                     int id = r.GetInt32("id");
                     string nom = r.GetString("nom");
                     string adresse = r.GetString("adresse");
-                    string telephone = r.GetString("telephone");
+                    string telephone = r.GetString("numero_telephone");
                     string email = r.GetString("email");
                     Client client = new Client(id,nom,adresse,telephone,email);
                     listeClients.Add(client);

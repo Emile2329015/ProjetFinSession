@@ -31,6 +31,7 @@ namespace TravailFinSession.Pages.Projet
         private void Modifier_Projet(object sender, RoutedEventArgs e)
         {
 
+
         }
 
         private void BtnGenererNumero_Click(object sender, RoutedEventArgs e)

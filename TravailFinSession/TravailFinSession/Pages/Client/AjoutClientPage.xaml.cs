@@ -32,16 +32,10 @@ namespace TravailFinSession.Pages.Client
         }
 
 
-        private void GenererId_Click(object sender, RoutedEventArgs e)
-        {
-            // Génère un identifiant aléatoire 100..999
-            int id = _rand.Next(100, 1000);
-            TbxClientId.Text = id.ToString();
-            tblerreurClientId.Text = "";
-        }
+      
         private void Ajouter_Client(object sender, RoutedEventArgs e)
         {
-            tblerreurClientId.Text = "";
+            
             tblerreurClientNom.Text = "";
             tblerreurClientAdresse.Text = "";
             tblerreurClientTelephone.Text = "";
@@ -74,11 +68,7 @@ namespace TravailFinSession.Pages.Client
                 valide = false;
             }
 
-            if (TbxClientId.Text.Trim() == "")
-            {
-                tblerreurClientId.Text = "Générez un identifiant pour le client";
-                valide = false;
-            }
+          
 
             //if (valide)
             //{

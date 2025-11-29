@@ -4,12 +4,15 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TravailFinSession.Slingletons;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -23,6 +26,7 @@ namespace TravailFinSession.Pages.Client
     /// </summary>
     public sealed partial class ModifieClientPage : Page
     {
+        Classes.Client clientAModifier;
         public ModifieClientPage()
         {
             InitializeComponent();
@@ -31,11 +35,69 @@ namespace TravailFinSession.Pages.Client
         private void Modifier_Client(object sender, RoutedEventArgs e)
         {
 
+            tblerreurClientNom.Text = "";
+            tblerreurClientAdresse.Text = "";
+            tblerreurClientTelephone.Text = "";
+            tblerreurClientEmail.Text = "";
+
+
+            bool valide = true;
+
+            if (TbxClientNom.Text.Trim() == "")
+            {
+                tblerreurClientNom.Text = "Entrez le nom du client";
+                valide = false;
+            }
+
+            if (TbxClientAdresse.Text.Trim() == "")
+            {
+                tblerreurClientAdresse.Text = "Entrez l'adresse du client";
+                valide = false;
+            }
+
+            if (TbxClientTelephone.Text.Trim() == "")
+            {
+                tblerreurClientTelephone.Text = "Entrez le téléphone du client";
+                valide = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(TbxClientEmail.Text) || !TbxClientEmail.Text.Contains("@"))
+            {
+                tblerreurClientEmail.Text = "Entrez un courriel valide";
+                valide = false;
+            }
+
+            if (valide)
+            {
+                clientAModifier.Nom = TbxClientNom.Text.Trim();
+                clientAModifier.Adresse = TbxClientAdresse.Text.Trim();
+                clientAModifier.Telephone = TbxClientTelephone.Text.Trim();
+                clientAModifier.Email = TbxClientEmail.Text.Trim();
+               
+
+
+
+
+            }
+
+           
         }
 
-        private void BtnGenererId_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            clientAModifier = e.Parameter as Classes.Client;
+            if (clientAModifier != null)
+            {
+                TbxClientNom.Text = clientAModifier.Nom;
+                TbxClientAdresse.Text = clientAModifier.Adresse;
+                TbxClientTelephone.Text = clientAModifier.Telephone;
+                TbxClientEmail.Text = clientAModifier.Email;
 
+
+            }
         }
+
+        
     }
 }

@@ -5,11 +5,13 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TravailFinSession.Slingletons;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -26,6 +28,25 @@ namespace TravailFinSession.Pages.Client
         public ListeClientPage()
         {
             InitializeComponent();
+            lvListeClients.ItemsSource = SingletonClient.getInstance().Liste;
+            SingletonClient.getInstance().getAllClients();
+        }
+
+        private void Modifier_Client(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+                Classes.Client client = b.DataContext as Classes.Client;
+
+            if (client is not null)
+                SingletonClient.getInstance().modifierClient(
+                         client.Identifiant,
+                         client.Nom,
+                         client.Adresse,
+                         client.Telephone,
+                         client.Email
+                 );
+
+
         }
     }
 }
