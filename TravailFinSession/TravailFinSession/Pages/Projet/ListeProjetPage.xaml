@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="TravailFinSession.Pages.Projet.ListeProjetPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -12,4 +12,4 @@
     <Grid>
         
     </Grid>
-</Page>
+</Page>-->

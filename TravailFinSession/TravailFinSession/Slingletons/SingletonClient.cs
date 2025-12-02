@@ -27,15 +27,47 @@ namespace TravailFinSession.Slingletons
         public static SingletonClient getInstance()
         {
             if (instance == null)
-            
+            {
                 instance = new SingletonClient();
-                return instance;
+            }
+               
+            return instance;
         }
 
         //Propriété qui retourne la liste des clients 
         public ObservableCollection<Client> Liste { get => listeClients; }
 
+        private int GenererIdentifiantunique()
+        {
+            int id;
+            Random rnd = new Random();
+            bool existe = true;
 
+            try
+            {
+                using MySqlConnection con = new MySqlConnection(connectionString);
+                using MySqlCommand commande = new MySqlCommand();
+                commande.Connection = con;
+                con.Open();
+
+                do
+                {
+                    id = rnd.Next(100, 1000);
+                    commande.CommandText = "select COUNT(*) from client WHERE id = @id";
+                    commande.Parameters.Clear();
+                    commande.Parameters.AddWithValue("@id", id);
+                    int count = Convert.ToInt32(commande.ExecuteScalar());
+                    existe = (count > 0);
+                }
+                while (existe);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return -1;
+            }
+            return id;
+        }
 
         public void getAllClients() //charge la liste avec tous les clients 
         {
@@ -66,34 +98,27 @@ namespace TravailFinSession.Slingletons
 
 
         // ajouter un client 
-        public void ajouter(string nom, string adresse, string telephone,string email)
+        public void ajouterClient(string nom, string adresse, string telephone,string email)
         {
             try
             {
-                using MySqlConnection con = new MySqlConnection(connectionString);
-                con.Open();
-                int id;
-                Random nbrRandom = new Random();
-
-                do
+                int nouvelId = GenererIdentifiantunique();
+                if(nouvelId == 1)
                 {
-                   id = nbrRandom.Next(100,1000); 
-                    using MySqlCommand checkCmd = new MySqlCommand("Select Count(*) From client WHERE id = @id",con);
-                    checkCmd.Parameters.AddWithValue("@id", id);
-                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
-                    if (count == 0) break;
+                    Debug.WriteLine("Erreur de génération de l'id du client");
+                    return;
                 }
-                while (true);
-                
+                using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
-                commande.CommandText = "insert into client values(@id, @nom, @adresse, @telephone,@email) ";
-                commande.Parameters.AddWithValue("@id", id);
+                commande.CommandText = "insert into client(id,nom,adresse,numero_telephone,email) values(@id,@nom, @adresse, @telephone,@email) ";
+                commande.Parameters.AddWithValue("@id", nouvelId);
                 commande.Parameters.AddWithValue("@nom", nom);
                 commande.Parameters.AddWithValue("@adresse", adresse);
                 commande.Parameters.AddWithValue("@telephone", telephone);
                 commande.Parameters.AddWithValue("@email", email);
-             
+
+                con.Open();
                 int i = commande.ExecuteNonQuery();
 
 
@@ -144,7 +169,7 @@ namespace TravailFinSession.Slingletons
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
                 commande.CommandText = "Select * from client where id = @idClient";
-                commande.Parameters.AddWithValue("@id", $"{idClient}");
+                commande.Parameters.AddWithValue("@idClient", idClient);
                 con.Open();
                 using MySqlDataReader r = commande.ExecuteReader();
                 while (r.Read())

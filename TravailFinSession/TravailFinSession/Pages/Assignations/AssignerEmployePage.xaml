@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="TravailFinSession.Pages.Projet.AssignerEmployePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -19,7 +19,7 @@
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Background="#E8FFE8" Padding="16" Spacing="12" Width="Auto">
 
-                <!--<ComboBox x:Name="CbxProjets" Header="Choisir un projet" SelectionChanged="CbxProjets_SelectionChanged"/>-->
+                --><!--<ComboBox x:Name="CbxProjets" Header="Choisir un projet" SelectionChanged="CbxProjets_SelectionChanged"/>--><!--
 
                 <TextBlock Text="Sélectionnez les employés à assigner (cliquez sur ajouter heures ensuite)" />
 
@@ -28,9 +28,9 @@
 
                 <TextBox x:Name="TbxHeures" Header="Nombre d'heures (par employé sélectionné)" Margin="0,6"/>
 
-                <!--<Button Click="Assigner_Employes_Click" Background="ForestGreen" Foreground="White" Padding="10" HorizontalAlignment="Center">Assigner</Button>-->
+                --><!--<Button Click="Assigner_Employes_Click" Background="ForestGreen" Foreground="White" Padding="10" HorizontalAlignment="Center">Assigner</Button>--><!--
 
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Page>
+</Page>-->
