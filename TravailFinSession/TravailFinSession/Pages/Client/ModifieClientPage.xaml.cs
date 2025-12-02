@@ -27,11 +27,7 @@ namespace TravailFinSession.Pages.Client
     /// </summary>
     public sealed partial class ModifieClientPage : Page
     {
-<<<<<<< HEAD
         Classes.Client? clientAModifier;
-=======
-        Classes.Client clientAModifier;
->>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
         public ModifieClientPage()
         {
             InitializeComponent();
@@ -78,7 +74,6 @@ namespace TravailFinSession.Pages.Client
                 clientAModifier.Adresse = TbxClientAdresse.Text.Trim();
                 clientAModifier.Telephone = TbxClientTelephone.Text.Trim();
                 clientAModifier.Email = TbxClientEmail.Text.Trim();
-<<<<<<< HEAD
 
                 SingletonClient.getInstance().modifierClient(
                     clientAModifier.Identifiant,
@@ -97,31 +92,15 @@ namespace TravailFinSession.Pages.Client
             };
             _ = dlg.ShowAsync();
                 
-=======
-               
-
-
-
-
-            }
-
-           
->>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-<<<<<<< HEAD
       
             if (e.Parameter is Classes.Client client)
             {
                 clientAModifier = client;
-=======
-            clientAModifier = e.Parameter as Classes.Client;
-            if (clientAModifier != null)
-            {
->>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
                 TbxClientNom.Text = clientAModifier.Nom;
                 TbxClientAdresse.Text = clientAModifier.Adresse;
                 TbxClientTelephone.Text = clientAModifier.Telephone;
@@ -131,10 +110,6 @@ namespace TravailFinSession.Pages.Client
             }
         }
 
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
     }
 }
