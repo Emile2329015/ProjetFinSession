@@ -31,7 +31,12 @@
 //        private void Modifier_Projet(object sender, RoutedEventArgs e)
 //        {
 
+<<<<<<< HEAD
 //        }
+=======
+
+        }
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
 
 //        private void BtnGenererNumero_Click(object sender, RoutedEventArgs e)
 //        {

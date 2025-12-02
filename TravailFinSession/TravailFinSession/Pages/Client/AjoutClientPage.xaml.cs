@@ -34,6 +34,7 @@ namespace TravailFinSession.Pages.Client
         }
 
 
+<<<<<<< HEAD
 
         private void Ajouter_Client(object sender, RoutedEventArgs e)
         {
@@ -41,6 +42,12 @@ namespace TravailFinSession.Pages.Client
             string patternTelephone = @"^\+?\d{7,15}$";
             bool valide = true;
 
+=======
+      
+        private void Ajouter_Client(object sender, RoutedEventArgs e)
+        {
+            
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
             tblerreurClientNom.Text = "";
             tblerreurClientAdresse.Text = "";
             tblerreurClientTelephone.Text = "";
@@ -70,11 +77,15 @@ namespace TravailFinSession.Pages.Client
                 valide = false;
             }
 
+<<<<<<< HEAD
             if (!Regex.IsMatch(TbxClientEmail.Text.Trim(), patternEmail))
             {
                 tblerreurClientEmail.Text = "Entrez un courriel valide(format requis:emiFran@gmail.com";
                 valide = false;
             }
+=======
+          
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
 
 
             if (valide)

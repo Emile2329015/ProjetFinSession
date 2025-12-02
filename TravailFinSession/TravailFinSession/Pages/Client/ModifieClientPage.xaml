@@ -27,6 +27,10 @@
         <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
             <Grid Margin="20"    Background="LightGreen" Padding="20"  ColumnSpacing="40" RowSpacing="15">
+<<<<<<< HEAD
+=======
+              
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -41,9 +45,16 @@
                 </Grid.RowDefinitions>
 
 
+<<<<<<< HEAD
                 <TextBox x:Name="TbxClientNom" Header="Nom du client" Grid.Row="0" Grid.Column="0"/>
                 <TextBlock x:Name="tblerreurClientNom" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
 
+=======
+
+                <TextBox x:Name="TbxClientNom" Header="Nom du client" Grid.Row="0" Grid.Column="0"/>
+                <TextBlock x:Name="tblerreurClientNom" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
+
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
                 <TextBox x:Name="TbxClientEmail" Header="Email" Grid.Row="2" Grid.Column="0"/>
                 <TextBlock x:Name="tblerreurClientEmail" Foreground="Red" Grid.Row="3" Grid.Column="0"/>
 

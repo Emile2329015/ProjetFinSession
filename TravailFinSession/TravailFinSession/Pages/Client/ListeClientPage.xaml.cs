@@ -35,10 +35,23 @@ namespace TravailFinSession.Pages.Client
         private void Modifier_Client(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
+<<<<<<< HEAD
             Classes.Client client = b.DataContext as Classes.Client;
 
             if (client is not null)
                 this.Frame.Navigate(typeof(ModifieClientPage),client);
+=======
+                Classes.Client client = b.DataContext as Classes.Client;
+
+            if (client is not null)
+                SingletonClient.getInstance().modifierClient(
+                         client.Identifiant,
+                         client.Nom,
+                         client.Adresse,
+                         client.Telephone,
+                         client.Email
+                 );
+>>>>>>> ff98305b9c6dfeafe940747c291843b1ce9e5644
 
 
         }
