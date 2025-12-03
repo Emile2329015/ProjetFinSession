@@ -7,9 +7,121 @@
     xmlns:classes="using:TravailFinSession.Classes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="#F5F5F5">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <Border Grid.Row="0" Height="60">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#1B5E20" Offset="0"/>
+                    <GradientStop Color="#388E3C" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="LISTE DES CLIENTS"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="40"
+                       Foreground="White"/>
+        </Border>
+
+        
+        <ListView x:Name="lvListeClients" 
+                  Grid.Row="1" 
+                  Padding="40,30"
+                  SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="classes:Client">
+                    <Grid Background="White" 
+                          Margin="0,0,0,20" 
+                          Padding="30" 
+                          CornerRadius="12"
+                          Height="Auto"
+                          MinHeight="140">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                       
+                        <Border Grid.Column="0"
+                                Width="90"
+                                Height="90"
+                                CornerRadius="45"
+                                Background="#E8F5E9"
+                                Margin="0,0,30,0"
+                                VerticalAlignment="Center">
+                            <SymbolIcon Symbol="Contact" 
+                                        Width="50" 
+                                        Height="50" 
+                                        Foreground="#2E7D32"/>
+                        </Border>
+
+                        
+                        <StackPanel Grid.Column="1" 
+                                    Spacing="10"
+                                    VerticalAlignment="Center">
+                            
+                            <TextBlock Text="{x:Bind Nom}" 
+                                       FontWeight="Bold" 
+                                       Foreground="#1B5E20" 
+                                       FontSize="28"/>
+
+                           
+                            <Border Background="#E8F5E9"
+                                    CornerRadius="6"
+                                    Padding="12,6"
+                                    HorizontalAlignment="Left">
+                                <TextBlock FontSize="13" 
+                                           FontWeight="SemiBold"
+                                           Foreground="#2E7D32">
+                                    <Run Text="Client #"/>
+                                    <Run Text="{x:Bind Identifiant}"/>
+                                </TextBlock>
+                            </Border>
+
+                            
+                            <TextBlock Text="{x:Bind Adresse}" 
+                                       FontSize="15"
+                                       Foreground="#666666"
+                                       TextWrapping="Wrap"/>
+
+                            <StackPanel Orientation="Horizontal" Spacing="30">
+                                <TextBlock FontSize="15" Foreground="#666666">
+                                    <Run Text="📞"/>
+                                    <Run Text="{x:Bind Telephone}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="15" Foreground="#666666">
+                                    <Run Text="✉️"/>
+                                    <Run Text="{x:Bind Email}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Grid.Column="2"
+                                Background="#2E7D32"
+                                Foreground="White"
+                                CornerRadius="8"
+                                Padding="24,14"
+                                VerticalAlignment="Center"
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Click="Modifier_Client">
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <SymbolIcon Symbol="Edit"/>
+                                <TextBlock Text="Modifier"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

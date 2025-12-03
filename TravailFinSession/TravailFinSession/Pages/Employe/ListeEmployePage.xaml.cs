@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TravailFinSession.Slingletons;
+using TravailFinSession.Classes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -25,22 +26,29 @@ namespace TravailFinSession.Pages.Employe
     /// </summary>
     public sealed partial class ListeEmployePage : Page
     {
-    //    public ListeEmployePage()
-    //    {
-    //        InitializeComponent();
-    //        gvListeEmploye.ItemsSource = SingletonEmploye.getInstance().Liste;
-    //        SingletonEmploye.getInstance().getAllEmploye();
-    //    }
+        public ListeEmployePage()
+        {
+            InitializeComponent();
+            //      gvListeEmploye.ItemsSource = SingletonEmploye.getInstance().Liste;
+            //        SingletonEmploye.getInstance().getAllEmploye();
+        }
 
-    //    private void Modifier_Employe(object sender, RoutedEventArgs e)
-    //    {
+        private void Modifier_Employe(object sender, RoutedEventArgs e)
+        {
 
-    //        Button b = sender as Button;
-    //        Employe employe = b.DataContext as Employe;
+            Button b = sender as Button;
+            Classes.Employe employe = b.DataContext as Classes.Employe;
 
-    //        if (Employe is not null)
-    //            Singleton.getInstance().modifier(Employe.Code);
+            //if (Classes.Employe is not null)
+            //    SingletonEmploye.getInstance().modifierEmploye(Employe.Code);
 
-    //    }
-    //}
+
+        }
+
+        private void gvListeEmploye_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+        //}
+    }
 }

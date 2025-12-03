@@ -48,20 +48,22 @@
                                      Grid.Column="1" Grid.Row="0" 
                                      TextAlignment="Left" 
                                      Foreground="CadetBlue" 
-                                     FontSize="25" />
+                                     FontSize="25" 
+                        />
 
                         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Spacing="20">
 
                             <TextBlock Text="{x:Bind Adresse, Mode=OneWay}"  TextAlignment="Left" Grid.Column="1" Grid.Row="1"/>
                             <TextBlock Text="{x:Bind Email, Mode=OneWay}"  TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
                             <TextBlock Text="{x:Bind Matricule, Mode=OneWay}"  TextAlignment="Left" Grid.Column="1" Grid.Row="1"/>
-                            <TextBlock Text="{x:Bind Statut, Mode=OneWay}"  TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+                            <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}"  TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
 
                         </StackPanel>
+
                         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
 
-                            <Button Click="Modifier_Employe"  HorizontalAlignment="Center" Background="CornflowerBlue">
-                                <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Click="Modifier_Employe"  HorizontalAlignment="Center" Background="CornflowerBlue"  >
+                                <StackPanel Orientation="Horizontal" Spacing="10" >
                                     <SymbolIcon Symbol="Edit" />
                                     <TextBlock Text="Modifier" />
                                 </StackPanel>

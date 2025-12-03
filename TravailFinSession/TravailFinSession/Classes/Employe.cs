@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace TravailFinSession.Classes
 {
+    public enum StatutEmploye
+    {
+        Journalier,
+        Permanent
+    };
     internal class Employe
     {
         string matricule;
@@ -17,9 +22,12 @@ namespace TravailFinSession.Classes
         DateTime dateEmbauche;
         double tauxHoraire;
         string photo;
-        string statut;
+        StatutEmploye statutEmploye;
 
-        public Employe(string matricule, string nom, string prenom, DateTime dateNaissance, string email, string adresse, DateTime dateEmbauche, double tauxHoraire, string photo, string statut)
+       
+        
+
+        public Employe(string matricule, string nom, string prenom, DateTime dateNaissance, string email, string adresse, DateTime dateEmbauche, double tauxHoraire, string photo,StatutEmploye statutEmploye)
         {
             this.matricule = matricule;
             this.nom = nom;
@@ -30,7 +38,8 @@ namespace TravailFinSession.Classes
             this.dateEmbauche = dateEmbauche;
             this.tauxHoraire = tauxHoraire;
             this.photo = photo;
-            this.statut = statut;
+            this.statutEmploye = statutEmploye;
+            
         }
 
         public string Matricule { get => matricule; set => matricule = value; }
@@ -43,7 +52,7 @@ namespace TravailFinSession.Classes
         public DateTime DateEmbauche { get => dateEmbauche; set => dateEmbauche = value; }
         public double TauxHoraire { get => tauxHoraire; set => tauxHoraire = value; }
         public string Photo { get => photo; set => photo = value; }
-        public string Statut { get => statut; set => statut = value; }
+        public  StatutEmploye  StatutEmploye{ get => statutEmploye; set => statutEmploye = value; }
 
         public override string ToString()
         {
@@ -56,7 +65,8 @@ namespace TravailFinSession.Classes
                    $"Date d’embauche : {dateEmbauche}\n" +
                    $"Taux horaire : {tauxHoraire}$\n" +
                    $"Photo : {photo}\n" +
-                   $"Statut : {statut}";
+                   $"Statut : {statutEmploye}";
+                 
         }
 
 

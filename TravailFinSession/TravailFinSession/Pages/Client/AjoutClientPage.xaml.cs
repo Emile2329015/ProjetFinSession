@@ -10,12 +10,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
+using TravailFinSession.Singletons;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace TravailFinSession.Pages.Client
 {
     /// <summary>
@@ -24,84 +24,66 @@ namespace TravailFinSession.Pages.Client
     public sealed partial class AjoutClientPage : Page
     {
         private readonly Random _rand = new Random();
-
-
         public AjoutClientPage()
         {
             InitializeComponent();
         }
-
-
-        private void GenererId_Click(object sender, RoutedEventArgs e)
+        private async void Ajouter_Client(object sender, RoutedEventArgs e)
         {
-            // Génère un identifiant aléatoire 100..999
-            int id = _rand.Next(100, 1000);
-            TbxClientId.Text = id.ToString();
-            tblerreurClientId.Text = "";
-        }
-        private void Ajouter_Client(object sender, RoutedEventArgs e)
-        {
-            tblerreurClientId.Text = "";
+            string patternEmail = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            string patternTelephone = @"^\+?\d{7,15}$";
+            bool valide = true;
             tblerreurClientNom.Text = "";
             tblerreurClientAdresse.Text = "";
             tblerreurClientTelephone.Text = "";
             tblerreurClientEmail.Text = "";
-
-
-            bool valide = true;
-
             if (TbxClientNom.Text.Trim() == "")
             {
                 tblerreurClientNom.Text = "Entrez le nom du client";
                 valide = false;
             }
-
             if (TbxClientAdresse.Text.Trim() == "")
             {
                 tblerreurClientAdresse.Text = "Entrez l'adresse du client";
                 valide = false;
             }
-
             if (TbxClientTelephone.Text.Trim() == "")
             {
                 tblerreurClientTelephone.Text = "Entrez le téléphone du client";
                 valide = false;
             }
-
-            if (string.IsNullOrWhiteSpace(TbxClientEmail.Text) || !TbxClientEmail.Text.Contains("@"))
+            else if (!Regex.IsMatch(TbxClientTelephone.Text.Trim(), patternTelephone))
             {
-                tblerreurClientEmail.Text = "Entrez un courriel valide";
+                tblerreurClientTelephone.Text = "Numéro de téléphone invalide (format requis: 4393456789";
                 valide = false;
             }
-
-            if (TbxClientId.Text.Trim() == "")
+            if (!Regex.IsMatch(TbxClientEmail.Text.Trim(), patternEmail))
             {
-                tblerreurClientId.Text = "Générez un identifiant pour le client";
+                tblerreurClientEmail.Text = "Entrez un courriel valide(format requis: e@gmail.com)";
                 valide = false;
             }
+            if (valide)
+            {
+                SingletonClient.getInstance().ajouterClient(
+                    TbxClientNom.Text.Trim(),
+                    TbxClientAdresse.Text.Trim(),
+                    TbxClientTelephone.Text.Trim(),
+                    TbxClientEmail.Text.Trim()
+                    );
+                var dlg = new ContentDialog
+                {
+                    Title = "Succès",
+                    Content = "le client a été ajouté avec succès.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                _ = dlg.ShowAsync();
+                TbxClientNom.Text = "";
+                TbxClientAdresse.Text = "";
+                TbxClientTelephone.Text = "";
+                TbxClientEmail.Text = "";
+            }
 
-            //if (valide)
-            //{
-            //    int idClient = int.Parse(TbxClientId.Text.Trim());
-            //    string nom = TbxClientNom.Text.Trim();
-            //    string adresse = TbxClientAdresse.Text.Trim();
-            //    string telephone = TbxClientTelephone.Text.Trim();
-            //    string email = TbxClientEmail.Text.Trim();
-            //    Classes.Client nouveauClient = new Classes.Client(idClient, nom, adresse, telephone, email);
-            //    Donnees.DonneesClients.AjouterClient(nouveauClient);
-            //    TbxClientId.Text = "";
-            //    TbxClientNom.Text = "";
-            //    TbxClientAdresse.Text = "";
-            //    TbxClientTelephone.Text = "";
-            //    TbxClientEmail.Text = "";
-            //    var dialog = new ContentDialog()
-            //    {
-            //        Title = "Succès",
-            //        Content = "Le client a été ajouté avec succès.",
-            //        CloseButtonText = "OK"
-            //    };
-            //    _ = dialog.ShowAsync();
-            //}
         }
     }
 }

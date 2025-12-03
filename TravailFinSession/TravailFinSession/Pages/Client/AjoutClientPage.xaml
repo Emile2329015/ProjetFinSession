@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="AliceBlue">
+    <Grid Background="ForestGreen">
 
 
         <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
 
         <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
-            <Grid Margin="20"    Background="LightGreen" Padding="20"  ColumnSpacing="40" RowSpacing="15">
+            <Grid Margin="20" Background="LightGreen" Padding="20"  ColumnSpacing="40" RowSpacing="15">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -41,14 +41,14 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                
+
 
                 <TextBox x:Name="TbxClientNom" Header="Nom du client" Grid.Row="0" Grid.Column="0"/>
                 <TextBlock x:Name="tblerreurClientNom" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
 
                 <TextBox x:Name="TbxClientEmail" Header="Email" Grid.Row="2" Grid.Column="0"/>
                 <TextBlock x:Name="tblerreurClientEmail" Foreground="Red" Grid.Row="3" Grid.Column="0"/>
-                
+
 
                 <TextBox x:Name="TbxClientAdresse" Header="Adresse" Grid.Row="0" Grid.Column="1"/>
                 <TextBlock x:Name="tblerreurClientAdresse" Foreground="Red" Grid.Row="1" Grid.Column="1"/>
@@ -59,11 +59,11 @@
                 <TextBlock Grid.Row="4" Grid.Column="1"/>
 
 
-                <Button Grid.Row="10" Grid.ColumnSpan="2" Click="Ajouter_Client"  Background="ForestGreen"
+                <Button Grid.Row="5" Grid.ColumnSpan="2" Click="Ajouter_Client"  Background="ForestGreen"
                     Foreground="White"
                     Padding="10"
                     HorizontalAlignment="Center"
-                    Margin="10"> Ajouter le client
+                    Margin="10">Ajouter le client
                 </Button>
 
             </Grid>
