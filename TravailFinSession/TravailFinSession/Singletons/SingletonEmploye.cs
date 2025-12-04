@@ -27,19 +27,21 @@ namespace TravailFinSession.Slingletons
         public static SingletonEmploye getInstance()
         {
             if (instance == null)
+                instance = new SingletonEmploye();
 
-               instance = new SingletonEmploye();
-               return instance;
+            return instance;
+
+
         }
 
-        //Propriété qui retourne la liste des employés 
+        
         public ObservableCollection<Employe> AfficherEmployes(){ return listeEmployes; }
 
 
 
-        public void getAllEmployes() //charge la liste avec tous les employés
+        public void getAllEmployes() 
         {
-            listeEmployes.Clear(); //permet de vider la liste avant de la recharger 
+            listeEmployes.Clear(); 
             try
             {
                 using MySqlConnection con = new MySqlConnection(connectionString);
@@ -76,13 +78,31 @@ namespace TravailFinSession.Slingletons
 
 
         // ajouter un employé
-        public void ajouterEmploye(string nom,string prenom,DateTime dateNaissance, string email, string adresse,DateTime dateEmbauche,double tauxHoraire, string photo,StatutEmploye statut)
+        public string ajouterEmploye(string nom,string prenom,DateTime dateNaissance, string email, string adresse,DateTime dateEmbauche,double tauxHoraire, string photo,StatutEmploye statut)
         {
             try
             {
                 if (tauxHoraire < 15.00)
-                    throw new ArgumentException("Le taux horaire doit être de 15$ au moins.");
+                    return "Letaux horaire doit être d'au moins 15$/h";
+
+                if(tauxHoraire > 200.00)
+                    return "Le taux horaire ne peut pas dépasser 200$/h";
+             
+            
+                int age = DateTime.Today.Year - dateNaissance.Year;
+                if (dateNaissance > DateTime.Today.AddYears(-age)) age--;
+
+                if (age < 18)
+                    return "L'employé doit avoir au moins 18 ans.";
+
+                if(age > 65)
+                    return "L'employé ne peut pas avoir plus de 65 ans.";
                 
+                if(dateEmbauche > DateTime.Today)
+                    return "La date d'embauche ne peut pas être dans le futur.";
+
+
+
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
@@ -101,11 +121,19 @@ namespace TravailFinSession.Slingletons
                 int i = commande.ExecuteNonQuery();
 
 
-                getAllEmployes();    //permet de recharger la liste des employés après un ajout 
+                getAllEmployes(); 
+                return "Employé ajouté avec succès.";
             }
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
+
+                if(ex.Message.Contains("Duplicate entry") && ex.Message.Contains("email"))
+                {
+                    return "L'adresse email existe déjà pour un autre employé.";
+                }
+
+                return "Une erreur est survenue lors de l'ajout de l'employé." + ex.Message;
             }
         }
 
@@ -131,12 +159,12 @@ namespace TravailFinSession.Slingletons
         }
 
         // modifier un employe
-        public void modifierEmploye(string matricule, string nom, string prenom,string email,string adresse,double tauxHoraire,string photo,StatutEmploye statut)
+        public string modifierEmploye(string matricule, string nom, string prenom,string email,string adresse,double tauxHoraire,string photo,StatutEmploye statut)
         {
             try
             {
                 if (tauxHoraire < 15.00)
-                    throw new ArgumentException("Le taux horaire doit être de 15$ au moins.");
+                    return"Le taux horaire doit être de 15$ au moins.";
                 using MySqlConnection con = new MySqlConnection(connectionString);
                 using MySqlCommand commande = new MySqlCommand();
                 commande.Connection = con;
@@ -155,76 +183,22 @@ namespace TravailFinSession.Slingletons
                 int i = commande.ExecuteNonQuery();
 
                 getAllEmployes();
+
+                return "Employé modifié avec succès.";
             }
             catch (MySqlException ex)
             {
                 Debug.WriteLine(ex.Message);
-            }
-        }
-
-        //// supprimer un employé
-        //public void supprimer(string matricule)
-        //{
-        //    try
-        //    {
-        //        using MySqlConnection con = new MySqlConnection(connectionString);
-        //        using MySqlCommand commande = new MySqlCommand();
-        //        commande.Connection = con;
-        //        commande.CommandText = "delete from employe where matricule = @matricule";
-        //        commande.Parameters.AddWithValue("@matricule", matricule);
-        //        con.Open();
-        //        int i = commande.ExecuteNonQuery();
-
-
-        //        getAllEmployes();    //permet de recharger la liste des employés après un ajout 
-        //    }
-        //    catch (MySqlException ex)
-        //    {
-        //        Debug.WriteLine(ex.Message);
-        //    }
-        //}
-
-
-        // Rechercher un employe par matricule
-
-
-        public void rechercheParMatricule(string matricule)
-        {
-            listeEmployes.Clear(); //permet de vider la liste avant de la recharger 
-            try
-            {
-                using MySqlConnection con = new MySqlConnection(connectionString);
-                using MySqlCommand commande = new MySqlCommand();
-                commande.Connection = con;
-                commande.CommandText = "Select * from employe where matricule = @matricule";
-                commande.Parameters.AddWithValue("@matricule", matricule);
-                con.Open();
-                using MySqlDataReader r = commande.ExecuteReader();
-                while (r.Read())
+                if (ex.Message.Contains("Duplicate entry") && ex.Message.Contains("email"))
                 {
-               
-                    string nom = r.GetString("nom");
-                    string prenom = r.GetString("prenom");
-                    DateTime dateNaissance = r.GetDateTime("date_naissance");
-                    string email = r.GetString("email");
-                    string adresse = r.GetString("adresse");
-                    DateTime dateEmbauche = r.GetDateTime("date_embauche");
-                    double tauxHoraire = r.GetDouble("taux_horaire");
-                    string photo = r.GetString("photo_identite");
-                    string statutEmp = r.GetString("statut");
-                    Enum.TryParse(statutEmp, true, out StatutEmploye statut);
-                    
-
-                    Employe employe = new Employe(matricule,nom,prenom,dateNaissance,email, adresse,dateEmbauche,tauxHoraire,photo,statut);
-
-                    listeEmployes.Add(employe);
+                    return "L'adresse email existe déjà pour un autre employé.";
                 }
-            }
-            catch (MySqlException ex)
-            {
-                Debug.WriteLine(ex.Message);
+
+                return "Une erreur est survenue lors de la modification de l'employé." + ex.Message;
             }
         }
+
+       
 
 
     }

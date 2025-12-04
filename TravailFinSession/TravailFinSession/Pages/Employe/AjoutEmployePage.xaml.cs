@@ -12,7 +12,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using TravailFinSession.Classes;
+using TravailFinSession.Singletons;
+using TravailFinSession.Slingletons;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -32,11 +35,10 @@ namespace TravailFinSession.Pages.Employe
             InitializeComponent();
         }
 
-        private void Ajouter_Employe(object sender, RoutedEventArgs e)
+        private async void Ajouter_Employe(object sender, RoutedEventArgs e)
         {
             bool valide = true;
 
-            tblerreurMatricule.Text = "";
             tblerreurNom.Text = "";
             tblerreurPrenom.Text = "";
             tblerreurDateNaissance.Text = "";
@@ -48,39 +50,42 @@ namespace TravailFinSession.Pages.Employe
             tblerreurStatut.Text = "";
 
 
-            if (TbxMatricule.Text.Trim() == "")
+            if (string.IsNullOrWhiteSpace(TbxNom.Text))
             {
-                tblerreurMatricule.Text = "Vous devez entrer votre matricule";
+                tblerreurNom.Text = "lenom est obligatoire.";
                 valide = false;
             }
 
-            if (TbxNom.Text.Trim() == "")
+            if (string.IsNullOrWhiteSpace(TbxPrenom.Text))
             {
-                tblerreurNom.Text = "Vous devez entrer votre nom";
-                valide = false;
-            }
-
-            if (TbxPrenom.Text.Trim() == "")
-            {
-                tblerreurPrenom.Text = "Vous devez entrer votre prénom";
+                tblerreurPrenom.Text = "Le prénom est obligatoire.";
                 valide = false;
             }
 
             DateTime dateNaissance;
-            if (!DateTime.TryParse(TbxDateNaissance.Text.Trim(), out dateNaissance))
+            if (dpDateNaissance.Date == null)
             {
-                tblerreurDateNaissance.Text = "Entrez une date de naissance valide (jj/mm/aaaa)";
-                valide = false;
+                tblerreurDateNaissance.Text = "La date de naissance est obligatoire.";
             }
             else
             {
+                dateNaissance = dpDateNaissance.Date.Value.DateTime;
+
                 int age = DateTime.Today.Year - dateNaissance.Year;
                 if (dateNaissance > DateTime.Today.AddYears(-age)) age--;
-                if (age < 18 || age > 65)
+
+                if (age < 18)
                 {
-                    tblerreurDateNaissance.Text = "L'employé doit avoir entre 18 et 65 ans";
+                    tblerreurDateNaissance.Text = "L'employé doit avoir au moins 18 ans.";
                     valide = false;
                 }
+                else if (age > 65)
+                {
+                    tblerreurDateNaissance.Text = "L'employé ne peut pas avoir plus de 65 ans.";
+                    valide = false;
+                }
+
+                
             }
 
             if (string.IsNullOrWhiteSpace(TbxEmail.Text) || !TbxEmail.Text.Contains("@"))
@@ -89,93 +94,126 @@ namespace TravailFinSession.Pages.Employe
                 valide = false;
             }
 
-            if (TbxAdresse.Text.Trim() == "")
+            if (string.IsNullOrWhiteSpace(TbxAdresse.Text))
             {
-                tblerreurAdresse.Text = "Vous devez entrer votre adresse";
+                tblerreurAdresse.Text = "L'adresse est obligatoire.";
                 valide = false;
             }
 
             DateTime dateEmbauche;
-            if (!DateTime.TryParse(TbxDateEmbauche.Text.Trim(), out dateEmbauche))
+            if (dpDateEmbauche.Date == null)
             {
-                tblerreurDateEmbauche.Text = "Entrez une date d'embauche valide";
+                tblerreurDateEmbauche.Text = "La date d'embauche est obligatoire.";
                 valide = false;
             }
-            else if (dateEmbauche > DateTime.Today)
+            else 
             {
-                tblerreurDateEmbauche.Text = "La date d'embauche ne peut pas être dans le futur";
-                valide = false;
-            }
-
-            if (TbxTauxHoraire.Text.Trim() == "")
-            {
-                tblerreurTauxHoraire.Text = "Vous devez entrer votre taux horaire";
-                valide = false;
-            }
-            else
-            {
-                try
+                dateEmbauche = dpDateEmbauche.Date.Value.DateTime;
+                if (dateEmbauche > DateTime.Today)
                 {
-                    double taux = Convert.ToDouble(TbxTauxHoraire.Text.Trim());
-                    if (taux <= 15)
-                    {
-                        tblerreurTauxHoraire.Text = "Le taux horaire doit être au moins 15$/heure";
-                        valide = false;
-                    }
-                }
-                catch
-                {
-                    tblerreurTauxHoraire.Text = "Le taux horaire doit être un nombre valide";
+                    tblerreurDateEmbauche.Text = "La date d'embauche ne peut pas être dans le futur";
                     valide = false;
                 }
+                
             }
 
+            double tauxHoraire = 0;
+            
 
-
-            if (Uri.IsWellFormedUriString(TbxUrl.Text.Trim(), UriKind.Absolute) == false)
+            if (string.IsNullOrWhiteSpace(TbxTauxHoraire.Text))
             {
-                tblerreurUrl.Text = "Entrez l'url de votre photo d'identité";
+                tblerreurTauxHoraire.Text = "Le taux horaire est obligatoire.";
                 valide = false;
             }
 
-            if (cmbxStatut.Text.Trim() == "")
+            else if (!double.TryParse(TbxTauxHoraire.Text.Trim(), out tauxHoraire))
             {
-                tblerreurStatut.Text = "Vous devez entrer votre statut";
+                tblerreurTauxHoraire.Text = "Le taux horaire doit être un nombre valide.";
+                valide = false;
+            }
+            else if (tauxHoraire < 15.00)
+            {
+
+                tblerreurTauxHoraire.Text = "Le taux horaire doit être au moins 15$/heure";
+                valide = false;
+
+            }
+            else if (tauxHoraire > 200.00)
+            {
+                tblerreurTauxHoraire.Text = "Le taux horaire ne peut pas dépasser 200$/heure";
                 valide = false;
             }
 
-            //if (valide)
-            //{
-            //    string matricule = TbxMatricule.Text.Trim();
-            //    string nom = TbxNom.Text.Trim();
-            //    string prenom = TbxPrenom.Text.Trim();
-            //    string email = TbxEmail.Text.Trim();
-            //    string adresse = TbxAdresse.Text.Trim();
-            //    double tauxHoraire = Convert.ToDouble(TbxTauxHoraire.Text.Trim());
-            //    string photo = TbxUrl.Text.Trim();
-            //    string statut = cmbxStatut.Text.Trim();
-            //    Employe nouvelEmploye = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut);
-            //    Donnees.DonneesEmployes.AjouterEmploye(nouvelEmploye);
-            //    TbxMatricule.Text = "";
-            //    TbxNom.Text = "";
-            //    TbxPrenom.Text = "";
-            //    TbxDateNaissance.Text = "";
-            //    TbxEmail.Text = "";
-            //    TbxAdresse.Text = "";
-            //    TbxDateEmbauche.Text = "";
-            //    TbxTauxHoraire.Text = "";
-            //    TbxUrl.Text = "";
-            //    cmbxStatut.SelectedIndex = -1;
-            //    var dialog = new ContentDialog()
-            //    {
-            //        Title = "Succès",
-            //        Content = "L'employé a été ajouté avec succès.",
-            //        CloseButtonText = "OK"
-            //    };
-            //    _ = dialog.ShowAsync();
-            //}
 
 
+            if (string.IsNullOrWhiteSpace(TbxUrl.Text) || !Uri.IsWellFormedUriString(TbxUrl.Text.Trim(), UriKind.Absolute))
+            {
+                tblerreurUrl.Text = "Entrer un url valide pour la photo d'identité.";
+                valide = false;
+            }
+
+            if (cmbxStatut.SelectedIndex == -1)
+            {
+                tblerreurStatut.Text = "Le statut est obligatoire.";
+                valide = false;
+            }
+
+
+            if (valide)
+            {
+                string nom = TbxNom.Text.Trim();
+                string prenom = TbxPrenom.Text.Trim();
+                dateNaissance = dpDateNaissance.Date.Value.DateTime;
+                string email = TbxEmail.Text.Trim();
+                string adresse = TbxAdresse.Text.Trim();
+                dateEmbauche = dpDateEmbauche.Date.Value.DateTime;
+                string photo = TbxUrl.Text.Trim();
+
+                StatutEmploye statut;
+
+                if (cmbxStatut.SelectedItem.ToString() == "Journalier")
+                {
+                    statut = StatutEmploye.Journalier;
+                }
+                else
+                {
+                    statut = StatutEmploye.Permanent;
+                }
+
+                string resultat = SingletonEmploye.getInstance().ajouterEmploye(nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo, statut);
+
+                if(resultat == "")
+                {
+
+                    ContentDialog dialog = new ContentDialog()
+                    {
+                        Title = "Succès",
+                        Content = "L'employé a été ajouté avec succès.",
+                        CloseButtonText = "OK",
+                        XamlRoot = this.XamlRoot
+                    };
+                }
+                else
+                {
+                    ContentDialog dialog = new ContentDialog()
+                    {
+                        Title = "Erreur",
+                        Content = resultat,
+                        CloseButtonText = "OK",
+                        XamlRoot = this.XamlRoot
+                    };
+                    await dialog.ShowAsync();
+                    TbxNom.Text = "";
+                    TbxPrenom.Text = "";
+                    dpDateNaissance.Date = null;
+                    TbxEmail.Text = "";
+                    TbxAdresse.Text = "";
+                    dpDateEmbauche.Date = null;
+                    TbxTauxHoraire.Text = "";
+                    TbxUrl.Text = "";
+                    cmbxStatut.SelectedIndex = -1;
+                }
+            }
 
         }
     }

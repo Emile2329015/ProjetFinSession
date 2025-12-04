@@ -29,18 +29,27 @@ namespace TravailFinSession.Pages.Employe
         public ListeEmployePage()
         {
             InitializeComponent();
-            //      gvListeEmploye.ItemsSource = SingletonEmploye.getInstance().Liste;
-            //        SingletonEmploye.getInstance().getAllEmploye();
+           
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            SingletonEmploye.getInstance().getAllEmployes();
+            gvListeEmploye.ItemsSource = SingletonEmploye.getInstance().AfficherEmployes();
         }
 
         private void Modifier_Employe(object sender, RoutedEventArgs e)
         {
 
-            Button b = sender as Button;
-            Classes.Employe employe = b.DataContext as Classes.Employe;
+            Button btn = sender as Button;
+            Classes.Employe employe = btn.DataContext as Classes.Employe;
 
-            //if (Classes.Employe is not null)
-            //    SingletonEmploye.getInstance().modifierEmploye(Employe.Code);
+            if (employe != null)
+            {
+                Frame.Navigate(typeof(ModifieEmployePage), employe);
+            }
 
 
         }

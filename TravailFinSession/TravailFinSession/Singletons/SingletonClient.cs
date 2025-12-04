@@ -131,7 +131,7 @@ namespace TravailFinSession.Singletons
 
                 do
                 {
-                    id = rnd.Next(100, 1000); // Génère un nombre entre 100 et 999
+                    id = rnd.Next(100, 1000); 
                     commande.CommandText = "SELECT COUNT(*) FROM client WHERE id = @id";
                     commande.Parameters.Clear();
                     commande.Parameters.AddWithValue("@id", id);
@@ -147,5 +147,7 @@ namespace TravailFinSession.Singletons
             }
             return id;
         }
+
+       
     }
 }

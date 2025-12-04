@@ -14,7 +14,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
 
@@ -25,22 +25,23 @@
                      FontSize="48"   Grid.Row="0"/>
 
 
-        <GridView x:Name="gvListeEmploye"   Grid.Row="1">
+        <GridView x:Name="gvListeEmploye" Grid.Row="1" Padding="20">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Employe">
 
-                    <Grid Background="Beige" Margin="10" Width="400" Height="150">
+                    <Grid Background="Beige" Margin="10" Width="400" Height="200" Padding="10">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{x:Bind Photo}" Stretch='Fill' Height="250" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4"/>
+                        <Image Source="{x:Bind Photo}" Stretch="UniformToFill" Width="80"  Height="80" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Margin="5"/>
 
                         <TextBlock Text="{x:Bind NomComplet}"
                                      TextWrapping="Wrap" 
@@ -48,28 +49,32 @@
                                      Grid.Column="1" Grid.Row="0" 
                                      TextAlignment="Left" 
                                      Foreground="CadetBlue" 
-                                     FontSize="25" 
+                                     FontSize="20" 
+                                     Margin="5"
                         />
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Spacing="20">
-
-                            <TextBlock Text="{x:Bind Adresse, Mode=OneWay}"  TextAlignment="Left" Grid.Column="1" Grid.Row="1"/>
-                            <TextBlock Text="{x:Bind Email, Mode=OneWay}"  TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
-                            <TextBlock Text="{x:Bind Matricule, Mode=OneWay}"  TextAlignment="Left" Grid.Column="1" Grid.Row="1"/>
-                            <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}"  TextAlignment="Center" Grid.Column="1" Grid.Row="1"/>
-
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="5">
+                            <TextBlock Text="Matricule : " FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind Matricule, Mode=OneWay}"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="5">
+                            <TextBlock Text="Email : " FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind Email, Mode=OneWay}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="5">
+                            <TextBlock Text="Statut : " FontWeight="SemiBold"/>
+                            <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}"/>
+                        </StackPanel>
 
-                            <Button Click="Modifier_Employe"  HorizontalAlignment="Center" Background="CornflowerBlue"  >
-                                <StackPanel Orientation="Horizontal" Spacing="10" >
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" Margin="5">
+                            <Button Click="Modifier_Employe" Background="CornflowerBlue" Foreground="White" >
+                                <StackPanel Orientation="Horizontal" Spacing="5" >
                                     <SymbolIcon Symbol="Edit" />
                                     <TextBlock Text="Modifier" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-
                     </Grid>
 
                 </DataTemplate>
