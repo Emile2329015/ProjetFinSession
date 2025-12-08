@@ -30,13 +30,6 @@
                 <ImageIconSource ImageSource="/Assets/logoProjet.png"/>
             </TitleBar.IconSource>
             
-
-            <TitleBar.RightHeader>
-                <PersonPicture
-            Width="30"
-            Height="30"
-            Initials="NER" />
-            </TitleBar.RightHeader>
         </TitleBar>
 
 

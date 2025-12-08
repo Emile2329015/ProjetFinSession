@@ -7,81 +7,127 @@
     xmlns:classes="using:TravailFinSession.Classes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="#F0F4F8">
 
-    <Grid Background="AliceBlue">
-
-
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Border Grid.Row="0" Height="60">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#0D47A1" Offset="0"/>
+                    <GradientStop Color="#1976D2" Offset="0.5"/>
+                    <GradientStop Color="#42A5F5" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="LISTE DES EMPLOYÉS"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="40"
+                       Foreground="White"/>
+        </Border>
 
-
-        <TextBlock x:Name="tblListeEmployé" Text="LISTE DES EMPLOYÉS " FontWeight="Bold"
-                     HorizontalAlignment="Center" 
-                     VerticalAlignment="Center" 
-                     FontSize="48"   Grid.Row="0"/>
-
-
-        <GridView x:Name="gvListeEmploye" Grid.Row="1" Padding="20">
+        <GridView x:Name="gvListeEmploye"
+                  Grid.Row="1"
+                  Padding="40,30"
+                  SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Employe">
+                    <Border Background="White"
+                            Margin="15"
+                            Width="520"
+                            Height="240"
+                            Padding="25"
+                            CornerRadius="16">
 
-                    <Grid Background="Beige" Margin="10" Width="400" Height="200" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{x:Bind Photo}" Stretch="UniformToFill" Width="80"  Height="80" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Margin="5"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <TextBlock Text="{x:Bind NomComplet}"
-                                     TextWrapping="Wrap" 
-                                     FontWeight="Bold" 
-                                     Grid.Column="1" Grid.Row="0" 
-                                     TextAlignment="Left" 
-                                     Foreground="CadetBlue" 
-                                     FontSize="20" 
-                                     Margin="5"
-                        />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Margin="5">
-                            <TextBlock Text="Matricule : " FontWeight="SemiBold"/>
-                            <TextBlock Text="{x:Bind Matricule, Mode=OneWay}"/>
-                        </StackPanel>
+                          
+                            <Border Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="3"
+                                    Width="100"
+                                    Height="100"
+                                    CornerRadius="50"
+                                    Margin="0,0,20,0"
+                                    VerticalAlignment="Top"
+                                    BorderBrush="#E3F2FD"
+                                    BorderThickness="4"
+                                    Background="#FFFFFF">
+                                <Image Width="100" Height="100" Stretch="UniformToFill">
+                                    <Image.Source>
+                                       
+                                        <Binding Path="Photo" />
+                                    </Image.Source>
+                                </Image>
+                            </Border>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="5">
-                            <TextBlock Text="Email : " FontWeight="SemiBold"/>
-                            <TextBlock Text="{x:Bind Email, Mode=OneWay}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Margin="5">
-                            <TextBlock Text="Statut : " FontWeight="SemiBold"/>
-                            <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}"/>
-                        </StackPanel>
+                            <!-- Infos -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8" VerticalAlignment="Top">
+                                <TextBlock Text="{x:Bind NomComplet, Mode=OneWay}"
+                                           FontWeight="Bold"
+                                           Foreground="#0D47A1"
+                                           FontSize="22"
+                                           TextWrapping="Wrap"
+                                           MaxLines="2"/>
+                                <Border Background="#E3F2FD" CornerRadius="6" Padding="10,5" HorizontalAlignment="Left">
+                                    <TextBlock FontSize="12" FontWeight="SemiBold" Foreground="#1565C0">
+                                        <Run Text="Matricule #"/>
+                                        <Run Text="{x:Bind Matricule, Mode=OneWay}"/>
+                                    </TextBlock>
+                                </Border>
+                            </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" Margin="5">
-                            <Button Click="Modifier_Employe" Background="CornflowerBlue" Foreground="White" >
-                                <StackPanel Orientation="Horizontal" Spacing="5" >
-                                    <SymbolIcon Symbol="Edit" />
-                                    <TextBlock Text="Modifier" />
+                            <!-- Détails -->
+                            <StackPanel Grid.Row="1" Grid.Column="1" Spacing="6" VerticalAlignment="Center" Margin="0,10,0,0">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <Border Width="24" Height="24" CornerRadius="12" Background="#E3F2FD" Padding="4">
+                                        <SymbolIcon Symbol="Mail" Foreground="#1976D2" Width="16" Height="16"/>
+                                    </Border>
+                                    <TextBlock Text="{x:Bind Email, Mode=OneWay}" FontSize="13" Foreground="#546E7A" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Border Width="24" Height="24" CornerRadius="12" Background="#E3F2FD" Padding="4">
+                                        <SymbolIcon Symbol="ContactInfo" Foreground="#1976D2" Width="16" Height="16"/>
+                                    </Border>
+
+                                    <!-- On met un fond neutre ici pour éviter le converter -->
+                                    <Border Background="#1976D2" CornerRadius="4" Padding="8,4" VerticalAlignment="Center">
+                                        <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" Foreground="White"/>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Grid.Row="2" Grid.Column="1"
+                                    Background="#1976D2" Foreground="White"
+                                    Padding="20,12" HorizontalAlignment="Stretch"
+                                    FontSize="15" FontWeight="SemiBold"
+                                    Click="Modifier_Employe" Margin="0,10,0,0">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <SymbolIcon Symbol="Edit" Width="18" Height="18"/>
+                                    <TextBlock Text="Modifier" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
-                    </Grid>
-
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-
-
     </Grid>
 </Page>
-

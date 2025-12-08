@@ -15,7 +15,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- En-tête avec gradient élégant -->
         <Border Grid.Row="0" Height="80">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -45,7 +44,6 @@
             </Grid>
         </Border>
 
-        <!-- Formulaire avec design carte élégant -->
         <ScrollViewer Grid.Row="1" 
                      VerticalScrollBarVisibility="Auto" 
                      HorizontalScrollBarVisibility="Disabled"

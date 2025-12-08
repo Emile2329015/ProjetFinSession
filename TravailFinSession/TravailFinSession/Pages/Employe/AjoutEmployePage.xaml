@@ -6,89 +6,314 @@
     xmlns:local="using:TravailFinSession.Pages.Employe"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="#F0F4F8">
 
-    <Grid Background="AliceBlue">
-
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-        <TextBlock x:Name="tblAjoutEmploye" Text="AJOUTER UN EMPLOYE" Grid.Row="0"
-       HorizontalAlignment="Center" 
-       VerticalAlignment="Center" 
-       FontSize="30"
-       FontWeight="Bold"/>
-
-
-        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-
-            <Grid Margin="20"   Background="LightBlue" Padding="20"  ColumnSpacing="40" RowSpacing="15">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBox x:Name="TbxNom" Header="Nom :" Grid.Row="0" Grid.Column="0" Margin="2"/>
-                <TextBlock x:Name="tblerreurNom" Foreground="Red" Grid.Row="1" Grid.Column="0" Margin="2"/>
-
-                <TextBox x:Name="TbxPrenom" Header="Prénom :" Grid.Row="2" Grid.Column="0" Margin="2"/>
-                <TextBlock x:Name="tblerreurPrenom" Foreground="Red" Grid.Row="3" Grid.Column="0" Margin="2"/>
-
-                <CalendarDatePicker x:Name="dpDateNaissance" Header="Date de naissance :" Grid.Row="4" Grid.Column="0" Margin="2"/>
-                <TextBlock x:Name="tblerreurDateNaissance" Foreground="Red" Grid.Row="5" Grid.Column="0" Margin="2"/>
-
-                <TextBox x:Name="TbxEmail" Header="Email :" Grid.Row="6" Grid.Column="0" Margin="2"/>
-                <TextBlock x:Name="tblerreurEmail" Foreground="Red" Grid.Row="7" Grid.Column="0" Margin="2"/>
-
-                <TextBox x:Name="TbxAdresse" Header="Adresse :" Grid.Row="8" Grid.Column="1" Margin="2"/>
-                <TextBlock x:Name="tblerreurAdresse" Foreground="Red" Grid.Row="9" Grid.Column="1" Margin="2"/>
-
-
-                <CalendarDatePicker x:Name="dpDateEmbauche" Header="Date d'embauche :" Grid.Row="0" Grid.Column="1" Margin="2"/>
-                <TextBlock x:Name="tblerreurDateEmbauche" Foreground="Red" Grid.Row="1" Grid.Column="1" Margin="2"/>
-
-                <TextBox x:Name="TbxTauxHoraire" Header="Taux horaire :" Grid.Row="2" Grid.Column="1" Margin="2"/>
-                <TextBlock x:Name="tblerreurTauxHoraire" Foreground="Red" Grid.Row="3" Grid.Column="1" Margin="2"/>
-
-                <TextBox x:Name="TbxUrl" Header="Photo d'identité (URL) :" Grid.Row="4" Grid.Column="1" Margin="2"/>
-                <TextBlock x:Name="tblerreurUrl" Foreground="Red" Grid.Row="5" Grid.Column="1" Margin="2"/>
-
-                <ComboBox x:Name="cmbxStatut" Header="Statut :" Grid.Row="6" Grid.Column="1" Margin="2">
-                    <x:String>Journalier</x:String>
-                    <x:String>Permanent</x:String>
-                </ComboBox>
-                <TextBlock x:Name="tblerreurStatut" Foreground="Red" Grid.Row="7" Grid.Column="1" Margin="2"/>
-
-
-
-                <Button Grid.Row="9" Grid.ColumnSpan="2" Click="Ajouter_Employe" Background="CornflowerBlue"
-                        Foreground="White"
-                        Padding="10"
-                        HorizontalAlignment="Center"
-                        Margin="10">Ajouter l'employé
-                </Button>
-
+        <!-- En-tête avec gradient bleu élégant -->
+        <Border Grid.Row="0" Height="80">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#0D47A1" Offset="0"/>
+                    <GradientStop Color="#1976D2" Offset="0.5"/>
+                    <GradientStop Color="#42A5F5" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <StackPanel Orientation="Horizontal" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Spacing="15">
+                    <Border Width="50" Height="50" 
+                            CornerRadius="25" 
+                            Background="#E3F2FD">
+                        <SymbolIcon Symbol="AddFriend" 
+                                   Foreground="#1565C0"
+                                   Width="30" Height="30"/>
+                    </Border>
+                    <TextBlock Text="AJOUTER UN EMPLOYÉ"
+                               FontWeight="Bold"
+                               FontSize="36"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
             </Grid>
+        </Border>
+
+        <!-- Formulaire avec design carte -->
+        <ScrollViewer Grid.Row="1" 
+                     VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled"
+                     Padding="40,40,40,60">
+            <Border Background="White" 
+                    CornerRadius="16" 
+                    Padding="50"
+                    MaxWidth="1200">
+               
+
+                <Grid ColumnSpacing="50" RowSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Nom -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Nom" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxNom" 
+                                PlaceholderText="Entrez le nom de famille"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurNom" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Date d'embauche -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Date d'embauche" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <CalendarDatePicker x:Name="dpDateEmbauche"
+                                           PlaceholderText="Sélectionnez la date"
+                                           Width="Auto"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="15"
+                                           CornerRadius="8">
+                            <CalendarDatePicker.Resources>
+                                <SolidColorBrush x:Key="CalendarDatePickerBorderBrush" Color="#BBDEFB"/>
+                            </CalendarDatePicker.Resources>
+                        </CalendarDatePicker>
+                        <TextBlock x:Name="tblerreurDateEmbauche" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Prénom -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Prénom" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxPrenom" 
+                                PlaceholderText="Entrez le prénom"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurPrenom" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Taux horaire -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Taux horaire" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxTauxHoraire" 
+                                PlaceholderText="Ex: 25.50"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2"
+                                InputScope="Number">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurTauxHoraire" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Date de naissance -->
+                    <StackPanel Grid.Row="2" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Date de naissance" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <CalendarDatePicker x:Name="dpDateNaissance"
+                                           PlaceholderText="Sélectionnez la date"
+                                           Width="Auto"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="15"
+                                           CornerRadius="8">
+                            <CalendarDatePicker.Resources>
+                                <SolidColorBrush x:Key="CalendarDatePickerBorderBrush" Color="#BBDEFB"/>
+                            </CalendarDatePicker.Resources>
+                        </CalendarDatePicker>
+                        <TextBlock x:Name="tblerreurDateNaissance" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Photo URL -->
+                    <StackPanel Grid.Row="2" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Photo d'identité (URL)" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxUrl" 
+                                PlaceholderText="https://exemple.com/photo.jpg"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2"
+                                InputScope="Url">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurUrl" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Email -->
+                    <StackPanel Grid.Row="3" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Adresse courriel" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxEmail" 
+                                PlaceholderText="exemple@email.com"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2"
+                                InputScope="EmailSmtpAddress">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurEmail" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Statut -->
+                    <StackPanel Grid.Row="3" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Statut de l'employé" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <ComboBox x:Name="cmbxStatut"
+                                 PlaceholderText="Sélectionnez le statut"
+                                 Width="Auto"
+                                 HorizontalAlignment="Stretch"
+                                 FontSize="15"
+                                 Padding="14,12"
+                                 CornerRadius="8">
+                            <ComboBox.Resources>
+                                <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="#BBDEFB"/>
+                            </ComboBox.Resources>
+                            <x:String>Journalier</x:String>
+                            <x:String>Permanent</x:String>
+                        </ComboBox>
+                        <TextBlock x:Name="tblerreurStatut" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Adresse -->
+                    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Spacing="8">
+                        <TextBlock Text="Adresse complète" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#0D47A1"/>
+                        <TextBox x:Name="TbxAdresse" 
+                                PlaceholderText="Numéro, rue, ville, province, code postal"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#BBDEFB"
+                                BorderThickness="2">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2196F3"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurAdresse" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Bouton d'ajout élégant -->
+                    <Button Grid.Row="5" 
+                           Grid.ColumnSpan="2" 
+                           Click="Ajouter_Employe"
+                           HorizontalAlignment="Center"
+                           Margin="0,30,0,0"
+                           Padding="40,16"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           CornerRadius="10">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#1565C0" Offset="0"/>
+                                <GradientStop Color="#2196F3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <SymbolIcon Symbol="Accept" 
+                                       Foreground="White"
+                                       Width="24" Height="24"/>
+                            <TextBlock Text="Ajouter l'employé" 
+                                      Foreground="White"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
         </ScrollViewer>
-       
     </Grid>
 </Page>
