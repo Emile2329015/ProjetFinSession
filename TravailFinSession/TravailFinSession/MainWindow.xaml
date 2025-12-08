@@ -29,24 +29,7 @@
             <TitleBar.IconSource >
                 <ImageIconSource ImageSource="/Assets/logoProjet.png"/>
             </TitleBar.IconSource>
-            <TitleBar.Content>
-                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                    <MenuBar>
-                        <MenuBarItem Title="MENU" Grid.Row="1">
-                            <MenuFlyoutItem Text="Exporter les projets" Tag="exporter" Click="MenuFlyoutItem_Click" />
-                        </MenuBarItem>
-
-                    </MenuBar>
-                    
-                    <AutoSuggestBox
-                    Width="500"
-                    VerticalAlignment="Center"
-                    PlaceholderText="rechercher des projets, employés, clients..."
-                    QueryIcon="Find" />
-
-                    
-                </StackPanel>
-            </TitleBar.Content>
+            
 
             <TitleBar.RightHeader>
                 <PersonPicture
@@ -81,10 +64,7 @@
                 <NavigationViewItem Content="Liste des Clients" x:Name="listeClients" Icon="Contact" Tag="listeClients"/>
                 <NavigationViewItem Content="Ajouter un Client" x:Name="addClient" Icon="Add"  Tag="addClient"/>
             </NavigationView.MenuItems>
-            <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="Déconnexion" x:Name="iDeconnexion" Icon="Switch" Tag="deconnexion" />
-                <NavigationViewItem Content="Aide" x:Name="iAide" Icon="Help" Tag="aide"/>
-            </NavigationView.FooterMenuItems>
+            
             <Frame x:Name="mainFrame" />
         </NavigationView>
     </Grid>

@@ -6,66 +6,199 @@
     xmlns:local="using:TravailFinSession.Pages.Client"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="#F5F5F5">
 
-    <Grid Background="AliceBlue">
-
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-        <TextBlock x:Name="tblModifierClient" Text="MODIFIER UN CLIENT" Grid.Row="0"
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="30"
-                   FontWeight="Bold"/>
-
-
-        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-
-            <Grid Margin="20"    Background="LightGreen" Padding="20"  ColumnSpacing="40" RowSpacing="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-
-                <TextBox x:Name="TbxClientNom" Header="Nom du client" Grid.Row="0" Grid.Column="0"/>
-                <TextBlock x:Name="tblerreurClientNom" Foreground="Red" Grid.Row="1" Grid.Column="0"/>
-
-                <TextBox x:Name="TbxClientEmail" Header="Email" Grid.Row="2" Grid.Column="0"/>
-                <TextBlock x:Name="tblerreurClientEmail" Foreground="Red" Grid.Row="3" Grid.Column="0"/>
-
-
-                <TextBox x:Name="TbxClientAdresse" Header="Adresse" Grid.Row="0" Grid.Column="1"/>
-                <TextBlock x:Name="tblerreurClientAdresse" Foreground="Red" Grid.Row="1" Grid.Column="1"/>
-
-                <TextBox x:Name="TbxClientTelephone" Header="Téléphone" Grid.Row="2" Grid.Column="1"/>
-                <TextBlock x:Name="tblerreurClientTelephone" Foreground="Red" Grid.Row="3" Grid.Column="1"/>
-
-                <TextBlock Grid.Row="4" Grid.Column="1"/>
-
-
-                <Button Grid.Row="5" Grid.ColumnSpan="2" Click="Modifier_Client"  Background="ForestGreen"
-                    Foreground="White"
-                    Padding="10"
-                    HorizontalAlignment="Center"
-                    Margin="10">Modifier le client
-                </Button>
-
+        <!-- En-tête avec gradient élégant -->
+        <Border Grid.Row="0" Height="80">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#1B5E20" Offset="0"/>
+                    <GradientStop Color="#388E3C" Offset="0.5"/>
+                    <GradientStop Color="#4CAF50" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <StackPanel Orientation="Horizontal" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Spacing="15">
+                    <Border Width="50" Height="50" 
+                            CornerRadius="25" 
+                            Background="#E8F5E9">
+                        <SymbolIcon Symbol="Edit" 
+                                   Foreground="#2E7D32"
+                                   Width="30" Height="30"/>
+                    </Border>
+                    <TextBlock Text="MODIFIER UN CLIENT"
+                               FontWeight="Bold"
+                               FontSize="36"
+                               Foreground="White"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
             </Grid>
-        </ScrollViewer>
+        </Border>
 
+        <!-- Formulaire avec design carte élégant -->
+        <ScrollViewer Grid.Row="1" 
+                     VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled"
+                     Padding="40,40,40,60">
+            <Border Background="White" 
+                    CornerRadius="16" 
+                    Padding="50"
+                    MaxWidth="1200">
+                
+
+                <Grid ColumnSpacing="50" RowSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Nom du client -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Nom du client" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1B5E20"/>
+                        <TextBox x:Name="TbxClientNom" 
+                                PlaceholderText="Entrez le nom complet"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#C8E6C9"
+                                BorderThickness="2">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#4CAF50"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurClientNom" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Adresse -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Adresse" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1B5E20"/>
+                        <TextBox x:Name="TbxClientAdresse" 
+                                PlaceholderText="Numéro, rue, ville"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#C8E6C9"
+                                BorderThickness="2">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#4CAF50"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurClientAdresse" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Email -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Spacing="8">
+                        <TextBlock Text="Adresse courriel" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1B5E20"/>
+                        <TextBox x:Name="TbxClientEmail" 
+                                PlaceholderText="exemple@email.com"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#C8E6C9"
+                                BorderThickness="2"
+                                InputScope="EmailSmtpAddress">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#4CAF50"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurClientEmail" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Téléphone -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" Spacing="8">
+                        <TextBlock Text="Numéro de téléphone" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1B5E20"/>
+                        <TextBox x:Name="TbxClientTelephone" 
+                                PlaceholderText="(123) 456-7890"
+                                FontSize="15"
+                                Padding="14,12"
+                                CornerRadius="8"
+                                BorderBrush="#C8E6C9"
+                                BorderThickness="2"
+                                InputScope="TelephoneNumber">
+                            <TextBox.Resources>
+                                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#4CAF50"/>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock x:Name="tblerreurClientTelephone" 
+                                  Foreground="#D32F2F" 
+                                  FontSize="13"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <!-- Bouton de modification élégant -->
+                    <Button Grid.Row="2" 
+                           Grid.ColumnSpan="2" 
+                           Click="Modifier_Client"
+                           HorizontalAlignment="Center"
+                           Margin="0,30,0,0"
+                           Padding="40,16"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           CornerRadius="10">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#2E7D32" Offset="0"/>
+                                <GradientStop Color="#4CAF50" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </ResourceDictionary>
+                        </Button.Resources>
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <SymbolIcon Symbol="Save" 
+                                       Foreground="White"
+                                       Width="24" Height="24"/>
+                            <TextBlock Text="Modifier le client" 
+                                      Foreground="White"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+        </ScrollViewer>
     </Grid>
 </Page>
