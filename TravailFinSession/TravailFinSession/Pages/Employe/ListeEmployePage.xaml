@@ -38,12 +38,7 @@
                   SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="classes:Employe">
-                    <Border Background="White"
-                            Margin="15"
-                            Width="520"
-                            Height="240"
-                            Padding="25"
-                            CornerRadius="16">
+                    <Border Background="White"  Margin="15"  Width="520"  Height="240"  Padding="25"  CornerRadius="16">
 
                         <Grid>
                             <Grid.RowDefinitions>
@@ -71,7 +66,6 @@
                                     Background="#FFFFFF">
                                 <Image Width="100" Height="100" Stretch="UniformToFill">
                                     <Image.Source>
-                                       
                                         <Binding Path="Photo" />
                                     </Image.Source>
                                 </Image>
@@ -107,7 +101,7 @@
                                         <SymbolIcon Symbol="ContactInfo" Foreground="#1976D2" Width="16" Height="16"/>
                                     </Border>
 
-                                    <!-- On met un fond neutre ici pour éviter le converter -->
+                                   
                                     <Border Background="#1976D2" CornerRadius="4" Padding="8,4" VerticalAlignment="Center">
                                         <TextBlock Text="{x:Bind StatutEmploye, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" Foreground="White"/>
                                     </Border>

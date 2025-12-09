@@ -29,10 +29,8 @@
             <TitleBar.IconSource >
                 <ImageIconSource ImageSource="/Assets/logoProjet.png"/>
             </TitleBar.IconSource>
-            
+
         </TitleBar>
-
-
 
         <MenuBar>
             <MenuBarItem Title="MENU" Grid.Row="1">
@@ -40,8 +38,6 @@
             </MenuBarItem>
 
         </MenuBar>
-
-
 
         <NavigationView PaneDisplayMode="Left" PaneTitle="GESTIONNAIRE PROJETS" x:Name="navView" ItemInvoked="navView_ItemInvoked" Background="LightGray" Grid.Row="2">
             <NavigationView.MenuItems>

@@ -22,6 +22,7 @@
     <None Remove="Pages\Employe\ListeEmployePage.xaml" />
     <None Remove="Pages\Employe\ModifieEmployePage.xaml" />
     <None Remove="Pages\Projet\AjoutProjetPage.xaml" />
+    <None Remove="Pages\Projet\DetailsProjetPage.xaml" />
     <None Remove="Pages\Projet\ListeProjetPage.xaml" />
     <None Remove="Pages\Projet\ModifieProjetPage.xaml" />
   </ItemGroup>
@@ -52,6 +53,11 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7175" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="MySqlConnector" Version="2.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Projet\DetailsProjetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\Projet\ModifieProjetPage.xaml">
